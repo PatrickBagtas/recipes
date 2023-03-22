@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>logged in</title>
+</head>
+<body>
+    <h1> WELCOME {{this_user.first_name}} {{this_user.last_name}} </h1>
+    <div class="container d-flex justify-content-between">
+        <a href="/">HOME</a>
+        <p>All posted recipes:</p>
+        <a href="/recipe/create">Create</a>
+        <a href="/logout"><button>logout</button></a>
+    </div>
+    <table class="table">
+        <thead> 
+            <th>Name</th>
+            <th>Under 30 minutes</th>
+            <th>Posted By</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            {% for one_recipe in all_recipes:%}
+            <tr scope="row">
+                <td>{{one_recipe.name}}</td>
+                <td>{% if one_recipe.undertime == 1%} yes
+                    {% endif %}
+                    {% if one_recipe.undertime == 0%} no
+                    {% endif %}</td>
+                <td>{{one_recipe.creations.first_name}}</td>
+                <td>
+                    <a href="/recipes/{{one_recipe.id}}">View Recipe </a>|
+                    {% if session['user_id']==one_recipe.creations.id %}
+                    <a href="/recipes/edit/{{one_recipe.id}}">edit </a>|
+                    <a href="/recipes/delete/{{one_recipe.id}}">delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>user's recipe</title>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/logged">Back</a>
+        <h1>WElCOME {{this_user.first_name}}</h1>
+        <a href="/logout"><button>logout</button></a>
+    </div>
+    <h3>Recipe name:{{this_recipe.name}}</h3>
+    <p>posted by: {{this_recipe.creations.first_name}}</p>
+
+    <div class="container">
+        <p>Description: {{this_recipe.description}}</p>
+        <p>Under 30 minutes?:{% if this_recipe.undertime == 1%} yes
+            {% endif %}
+            {% if this_recipe.undertime == 0%} no
+            {% endif %}</p>
+        <p>Instructions: {{this_recipe.instructions}}</p>
+        <p>Date Made: {{this_recipe.made}}</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body>
+<div class="container d-flex justify-content-between bg-light">
+    <form action="/users/register" method="post">
+    <div class="col-6 d-flex flex-column">
+        <h3>Register</h3>
+        <div>
+
+            first name
+            <input name="first_name">
+        </div>
+        <div>    last name
+            <input name="last_name">
+        </div>
+        <div>    email
+            <input name="email">
+        </div>
+        <div>    password
+            <input name="password" type="password">
+        </div>
+        <div>    confirm password
+            <input name="confirm_password" type="password">
+        </div>
+        <p></p>
+        <button>register</button>
+    </div>
+    {% with messages = get_flashed_messages(category_filter=['reg']) %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    </form>
+    <form action="/user/login" method="post">
+    <div class="col-6 ">
+            <h2>Login</h2>
+            <div>
+                email
+                <input name="email">
+            </div>
+            <div>
+                password
+                <input name="password" type="password">
+            </div>
+            <p></p>
+            <a href="/logged"><button>Login</button></a>
+        </form>
+        {% with messages = get_flashed_messages(category_filter=['login']) %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Recipe creation</title>
+</head>
+<body>
+    <h1>ADD a New Recipe!</h1>
+    <a href="#">back to recipes</a>
+    <a href="/logout">logout</a>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color:brown">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <form action="/recipes/new" method="post">
+    <div class="col">
+        <input type="hidden" name="user_id" value="{{session.user_id}}">
+        <div>
+            Name:
+            <input name="name">
+        </div>
+        <div>
+            Description:
+            <textarea name="description" col="20" rows="5"></textarea>
+        </div>
+        <div>
+            instructions:
+            <textarea name="instructions" col="20" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="col">
+        <div>
+            Date Cooked/Made:
+            <input name="made" type="date">
+        </div>
+        <div>
+            Under 30 minutes?
+            Yes
+            <input type="radio" name="undertime" value="1">
+            No
+            <input type="radio" name="undertime" value="0">
+        </div>
+    </div>
+    <button>Submit</button>
+    </form>
+</body>
+</html>
